@@ -1,0 +1,79 @@
+.sidebarContainer {
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  height: 100vh;
+
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  background: var(--main-dark);
+  color: var(--main-white);
+
+  font-family: "Poppins";
+
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.title {
+  font-family: "Odenburg";
+
+  font-size: 38px;
+
+  span {
+    color: var(--main-red);
+    font-weight: bold;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--main-white);
+  }
+}
+
+.deals {
+  padding: 20px 0;
+  margin-top: 20px;
+  border-top: 1px solid rgba(119, 119, 119, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  h3 {
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 1px;
+
+    color: var(--main-red);
+  }
+}
+
+.dealItem {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  text-decoration: none;
+  color: var(--darker-text);
+  cursor: pointer;
+
+  padding: 8px 0;
+  padding-left: 10px;
+
+  border-radius: 10px;
+
+  transition: 100ms background-color ease-in;
+
+  span {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+  }
+
+  &:hover {
+    background-color: var(--secondary-dark);
+  }
+}

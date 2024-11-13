@@ -1,0 +1,54 @@
+:root {
+  --main-dark: #212121;
+  --secondary-dark: #191919;
+  --main-white: #fff;
+  --main-red: #fa6a6a;
+
+  --sidebar-text: #c5c5c5;
+
+  --text-darker: #292929;
+  --text-gray: #363636;
+
+  --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/fonts/Poppins/Poppins-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/fonts/Poppins/Poppins-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/fonts/Poppins/Poppins-Light.ttf");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Odenburg";
+  src: url("/src/assets/fonts/Odenburg/Orenburg.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Odenburg";
+  src: url("/src/assets/fonts/Odenburg/Orenburg-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}

@@ -1,0 +1,73 @@
+.box {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 10px;
+}
+
+.presentation {
+  padding: 70px 0;
+}
+
+.dealsTableContainer {
+}
+
+.dealsTable {
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+
+  border-radius: 6px;
+
+  font-family: "Poppins";
+
+  thead {
+    color: var(--main-white);
+    font-weight: 300;
+    font-size: 12px;
+
+    text-transform: uppercase;
+  }
+
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+  }
+
+  th {
+    background: var(--main-dark);
+  }
+}
+
+#buttons {
+  display: flex;
+  gap: 6px;
+
+  button {
+    width: 25px;
+    height: 25px;
+
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+
+    color: var(--main-white);
+
+    &:hover {
+      filter: brightness(85%);
+    }
+  }
+
+  #see {
+    background-color: darkgreen;
+  }
+  #edit {
+    background-color: skyblue;
+  }
+  #delete {
+    background-color: var(--main-red);
+  }
+}
