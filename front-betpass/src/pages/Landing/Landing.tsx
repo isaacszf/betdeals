@@ -1,6 +1,6 @@
 import { FaYoutubeSquare, FaGithubSquare } from "react-icons/fa";
 
-import ContainerSidebar from "../../components/ContainerSidebar/ContainerSidebar";
+import Logo from "../../components/Logo/Logo";
 
 import styles from "./landing.module.css";
 
@@ -21,9 +21,11 @@ const links = [
 
 export default function Landing() {
   return (
-    <ContainerSidebar>
+    <div className={styles.container}>
       <div className={styles.welcomeInfo}>
-        <h1>Bem vindo! 👋</h1>
+        <Logo />
+
+        <h2>Bem vindo! 👋</h2>
         <p>
           Este é um projeto realizado por Isaac Souza para o desafio técnico da
           Betpass, focado em demonstrar habilidades essenciais no
@@ -42,7 +44,11 @@ export default function Landing() {
             </a>
           ))}
         </div>
+
+        <a href="/deals" className={styles.goto}>
+          Acessar Deals
+        </a>
       </div>
-    </ContainerSidebar>
+    </div>
   );
 }

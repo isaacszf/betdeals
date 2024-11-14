@@ -31,6 +31,9 @@ export class DealsService {
     const [deals, total] = await this.dealRepository.findAndCount({
       take: limit,
       skip: offset,
+      order: {
+        createdAt: 'DESC',
+      },
     });
 
     return {
@@ -56,6 +59,9 @@ export class DealsService {
       where: [{ name: Like(`%${name.toLowerCase()}%`) }],
       take: limit,
       skip: offset,
+      order: {
+        createdAt: 'DESC',
+      },
     });
 
     return {
