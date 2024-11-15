@@ -37,7 +37,7 @@ type DealsContextType = {
 const showToast = (msg: string) => {
   return toast(msg, {
     position: "top-left",
-    autoClose: 5000,
+    autoClose: 2500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

@@ -13,7 +13,7 @@ import { UpdateDealDto } from './dto/update-deal.dto';
 import {
   Pagination,
   PaginationParams,
-} from 'src/common/decorators/pagination-params.decorator';
+} from '../common/decorators/pagination-params.decorator';
 
 @Controller('deals')
 export class DealsController {

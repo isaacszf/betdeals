@@ -180,6 +180,20 @@
   color: var(--white-text);
 }
 
+.exhausted {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  #greenCheck {
+    color: var(--neon-green);
+  }
+  #redCheck {
+    color: var(--red);
+  }
+}
+
 .dealStatus {
   margin-top: 50px;
 

@@ -1,5 +1,11 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { FaEdit, FaTrash, FaShoppingBag } from "react-icons/fa";
+import {
+  FaPenToSquare,
+  FaTrash,
+  FaBagShopping,
+  FaCheck,
+  FaX,
+} from "react-icons/fa6";
 import { useDeals } from "../../context/DealsContext";
 
 import { Deal } from "../../types/Deal";
@@ -34,6 +40,7 @@ export default function Deals() {
 
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
+  // timeout por questões de performance
   useEffect(() => {
     if (debounceTm.current) clearTimeout(debounceTm.current);
 
@@ -59,7 +66,7 @@ export default function Deals() {
     <div className={styles.container}>
       <div className={styles.sidebar}>
         <a href="/">
-          <FaShoppingBag />
+          <FaBagShopping />
           <span>Loja de Deals</span>
         </a>
       </div>
@@ -103,7 +110,7 @@ export default function Deals() {
                           setFormUpdateModal(true);
                         }}
                       >
-                        <FaEdit />
+                        <FaPenToSquare />
                       </button>
                       <button
                         onClick={() => {
@@ -125,9 +132,13 @@ export default function Deals() {
                         <span>{deal.score}</span>
                       </div>
 
-                      <div>
+                      <div className={styles.exhausted}>
                         <strong>Esgotado: </strong>
-                        <span>{deal.isExhausted ? "✅" : "❌"}</span>
+                        {deal.isExhausted ? (
+                          <FaCheck id={styles.greenCheck} />
+                        ) : (
+                          <FaX id={styles.redCheck} />
+                        )}
                       </div>
 
                       <div>

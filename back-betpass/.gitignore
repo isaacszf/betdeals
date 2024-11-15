@@ -3,6 +3,8 @@
 /node_modules
 /build
 
+populate.js
+
 # Logs
 logs
 *.log
