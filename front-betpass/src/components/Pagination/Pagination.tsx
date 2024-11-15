@@ -15,7 +15,7 @@ export default function Pagination({
 }: Props) {
   const [internalPage, setInternalPage] = useState(currentPage);
 
-  const maxPageButtons = 10;
+  const maxPageButtons = 6;
 
   const getPageNumbers = () => {
     let startPage = Math.max(1, internalPage - Math.floor(maxPageButtons / 2));

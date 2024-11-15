@@ -12,6 +12,8 @@
   align-items: center;
 
   transition: opacity 0.3s ease;
+
+  overflow: hidden;
 }
 
 .content {
@@ -34,6 +36,8 @@
   h3 {
     color: var(--really-white-text);
   }
+
+  overflow-y: auto;
 }
 
 .header {
@@ -108,5 +112,11 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 772px) {
+  .content {
+    width: 95%;
   }
 }

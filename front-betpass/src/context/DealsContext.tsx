@@ -54,7 +54,7 @@ export const DealsProvider = ({ children }: DealsProviderProps) => {
   const [totalItems, setTotalItems] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
 
   const handleRequest = useCallback(
     async (

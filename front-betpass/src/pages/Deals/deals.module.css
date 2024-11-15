@@ -117,7 +117,7 @@
 
   transition: transform 0.2s ease;
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-7px);
   }
 }
 
@@ -162,7 +162,7 @@
 
     &:first-child {
       &:hover {
-        color: var(--neon-green);
+        color: var(--light-blue);
       }
     }
     &:last-child {
@@ -186,4 +186,35 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+@media (max-width: 1190px) {
+  .deal {
+    width: 100%;
+  }
+}
+
+@media (max-width: 772px) {
+  .container {
+    flex-direction: column;
+    background: var(--main-blue);
+  }
+
+  .box {
+    padding: 40px 20px;
+  }
+
+  .sidebar,
+  .deal,
+  .inpt {
+    width: 100%;
+  }
+}
+
+@media (max-width: 385px) {
+  .deal {
+    span {
+      max-width: 120px;
+    }
+  }
 }

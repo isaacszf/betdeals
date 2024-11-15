@@ -2,6 +2,7 @@
   --main-blue: #222b33;
   --darker-blue: #151c25;
   --deal-blue: #1a212a;
+  --light-blue: #4a71e7;
 
   --input-blue: #373c45;
   --neon-green: #c8e64f;
@@ -13,6 +14,7 @@
   --dark-gray: #696969;
   --red: #cd3547;
 
+  /* toast */
   --toastify-color-dark: #222b33 !important;
   --toastify-color-progress-dark: #c8e64f !important;
 }

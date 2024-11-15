@@ -43,7 +43,7 @@ export default function DeleteModal({ id, onCloseFunction }: Props) {
               onCloseFunction(e);
             }}
           >
-            Confirmar exclusão
+            Confirmar
           </button>
         </div>
       </div>

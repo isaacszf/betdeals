@@ -71,7 +71,7 @@ export default function FormUpdateModal({ id, onCloseFunction }: Props) {
 
     const newErrors: any = {};
 
-    if (formValues.name.length < 5 || formValues.name.length > 100)
+    if (formValues.name.length < 5 || formValues.name.length > 25)
       newErrors.name = "Nome precisa ter entre 5-25 caractereres!";
 
     if (formValues.description.length < 5 || formValues.description.length > 80)

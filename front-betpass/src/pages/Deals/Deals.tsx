@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { FaEdit, FaTrash, FaShoppingBag } from "react-icons/fa";
 import { useDeals } from "../../context/DealsContext";
 
@@ -23,33 +23,32 @@ export default function Deals() {
   const { deals, getDeals, getDealsByName, totalItems, loading, itemsPerPage } =
     useDeals()!;
   const [page, setPage] = useState(1);
+  const [searchedName, setSearchedName] = useState("");
   const [selectedDealId, setSelectedDealId] = useState(-1);
 
   const [formCreateModal, setFormCreateModal] = useState(false);
   const [formUpdateModal, setFormUpdateModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
+  const debounceTm = useRef<number | null>(null);
+
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   useEffect(() => {
-    getDeals(page);
-  }, [page, getDeals]);
+    if (debounceTm.current) clearTimeout(debounceTm.current);
+
+    debounceTm.current = setTimeout(() => {
+      if (searchedName.length === 0) {
+        getDeals(page);
+      } else getDealsByName(page, searchedName);
+    }, 200);
+
+    return () => {
+      if (debounceTm.current) clearTimeout(debounceTm.current);
+    };
+  }, [page, getDeals, getDealsByName, searchedName]);
 
   // Handlers
-  let debounceTm: number;
-  const handleSearchByName = (e: ChangeEvent<HTMLInputElement>) => {
-    const inpt = e.target.value;
-
-    // deixando mais performatico
-    clearTimeout(debounceTm);
-
-    debounceTm = setTimeout(() => {
-      if (inpt.length === 0) {
-        getDeals(page);
-      } else getDealsByName(page, inpt);
-    }, 300);
-  };
-
   const handleCloseModal = () => {
     setFormCreateModal(false);
     setDeleteModal(false);
@@ -59,7 +58,7 @@ export default function Deals() {
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>
-        <a href="/deals">
+        <a href="/">
           <FaShoppingBag />
           <span>Loja de Deals</span>
         </a>
@@ -74,7 +73,9 @@ export default function Deals() {
         <hr />
 
         <input
-          onInput={handleSearchByName}
+          onInput={(e: ChangeEvent<HTMLInputElement>) =>
+            setSearchedName(e.target.value)
+          }
           className={styles.inpt}
           placeholder="Pesquisar por nome"
           type="text"

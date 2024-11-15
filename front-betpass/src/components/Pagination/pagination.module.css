@@ -49,3 +49,20 @@
     color: var(--darker-blue);
   }
 }
+
+@media (max-width: 772px) {
+  .container {
+    justify-content: center;
+  }
+
+  .pages {
+    button {
+      width: 25px;
+      height: 25px;
+
+      padding: 0;
+
+      font-size: 12px;
+    }
+  }
+}
