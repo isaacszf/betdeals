@@ -4,6 +4,7 @@ import {
   FocusEvent,
   FormEvent,
   MouseEvent,
+  useEffect,
   useState,
 } from "react";
 import { FaX } from "react-icons/fa6";
@@ -15,10 +16,11 @@ import { useDeals } from "../../../context/DealsContext";
 
 type Props = {
   onCloseFunction: (e: MouseEvent<HTMLButtonElement>) => void;
+  id: number;
 };
 
-export default function FormCreateModal({ onCloseFunction }: Props) {
-  const { postDeal, loading } = useDeals()!;
+export default function FormUpdateModal({ id, onCloseFunction }: Props) {
+  const { updateDeal, getDealById, deal, loading } = useDeals()!;
 
   const [formValues, setFormValues] = useState<InputCreateForm>({
     name: "",
@@ -32,6 +34,21 @@ export default function FormCreateModal({ onCloseFunction }: Props) {
     description: "",
     score: "",
   });
+
+  useEffect(() => {
+    getDealById(id);
+  }, [id, getDealById]);
+
+  useEffect(() => {
+    if (deal) {
+      setFormValues({
+        name: deal.name,
+        description: deal.description,
+        score: deal.score,
+        isExhausted: deal.isExhausted,
+      });
+    }
+  }, [deal]);
 
   // Handles
   const handleInputChange = (
@@ -65,14 +82,14 @@ export default function FormCreateModal({ onCloseFunction }: Props) {
 
     setErrors(newErrors);
 
-    if (Object.keys(newErrors).length === 0) await postDeal(formValues);
+    if (Object.keys(newErrors).length === 0) await updateDeal(id, formValues);
   };
 
   return (
     <div className={styles.modal}>
       <div className={styles.content}>
         <div className={styles.header}>
-          <h3>Criar Deal</h3>
+          <h3>Editar Deal</h3>
           <button onClick={onCloseFunction}>
             <FaX />
           </button>
@@ -82,6 +99,7 @@ export default function FormCreateModal({ onCloseFunction }: Props) {
           <div className={styles.labelContainer}>
             <label>Nome da Casa</label>
             <input
+              value={formValues.name}
               type="text"
               placeholder="Exemplo: ABC BET"
               name="name"
@@ -94,6 +112,7 @@ export default function FormCreateModal({ onCloseFunction }: Props) {
           <div className={styles.labelContainer}>
             <label>Descrição</label>
             <textarea
+              value={formValues.description}
               placeholder="Descrição do deal"
               name="description"
               onChange={handleInputChange}
@@ -107,6 +126,7 @@ export default function FormCreateModal({ onCloseFunction }: Props) {
           <div className={styles.labelContainer}>
             <label>Nota</label>
             <input
+              value={formValues.score}
               type="number"
               name="score"
               id={styles.scoreInput}
@@ -120,6 +140,7 @@ export default function FormCreateModal({ onCloseFunction }: Props) {
 
           <div className={styles.checkbox}>
             <input
+              checked={formValues.isExhausted}
               type="checkbox"
               id="toggle"
               onChange={(e) =>

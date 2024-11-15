@@ -6,10 +6,13 @@ import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import { router } from "./router";
+import { DealsProvider } from "./context/DealsContext";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
-    <ToastContainer />
+    <DealsProvider>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </DealsProvider>
   </StrictMode>
 );

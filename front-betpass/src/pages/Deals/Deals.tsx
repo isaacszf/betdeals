@@ -1,195 +1,166 @@
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
-import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
-import axios from "axios";
+import { ChangeEvent, useEffect, useState } from "react";
+import { FaEdit, FaTrash, FaShoppingBag } from "react-icons/fa";
+import { useDeals } from "../../context/DealsContext";
 
 import { Deal } from "../../types/Deal";
-import { localUrl } from "../../api/url";
 
-import Logo from "../../components/Logo/Logo";
+import Loading from "../../components/Loading/Loading";
+import FormCreateModal from "../../components/Modals/FormCreateModal/FormCreateModal";
+import FormUpdateModal from "../../components/Modals/FormUpdateModal/FormUpdateModal";
+import DeleteModal from "../../components/Modals/DeleteModal/DeleteModal";
 import Pagination from "../../components/Pagination/Pagination";
 
 import styles from "./deals.module.css";
-import FormCreateModal from "../../components/Modals/FormCreateModal/FormCreateModal";
 
 const parseData = (date: Date) => {
   const splitedDate = String(date).split("T");
-  return splitedDate[0];
-};
+  const parts = splitedDate[0].split("-");
 
-const title = (str: string) => {
-  return str.replace(
-    /\w\S*/g,
-    (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
-  );
+  return `${parts[2]}/${parts[1]}/${parts[0]}`;
 };
 
 export default function Deals() {
-  const [name, setName] = useState("");
-  const [deals, setDeals] = useState([]);
+  const { deals, getDeals, getDealsByName, totalItems, loading, itemsPerPage } =
+    useDeals()!;
   const [page, setPage] = useState(1);
-  const [totalItems, setTotalItems] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [selectedDealId, setSelectedDealId] = useState(-1);
 
   const [formCreateModal, setFormCreateModal] = useState(false);
+  const [formUpdateModal, setFormUpdateModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
 
-  const itemsPerPage = 15;
-
-  // Fetchs
-  const getDeals = async (page: number) => {
-    setLoading(true);
-
-    try {
-      const resp = await axios.get(`${localUrl}/deals`, {
-        params: { page, size: itemsPerPage },
-      });
-
-      if (resp.data.success) {
-        setDeals(resp.data.data.items);
-        setTotalItems(resp.data.data.totalItems);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getDealsByName = async (page: number, name: string) => {
-    setLoading(true);
-
-    try {
-      const resp = await axios.get(`${localUrl}/deals/names/${name}`, {
-        params: { page, size: itemsPerPage },
-      });
-
-      if (resp.data.success) {
-        setDeals(resp.data.data.items);
-        setTotalItems(resp.data.data.totalItems);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   useEffect(() => {
     getDeals(page);
-  }, [page]);
+  }, [page, getDeals]);
 
   // Handlers
-  const handleSearchByName = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  let debounceTm: number;
+  const handleSearchByName = (e: ChangeEvent<HTMLInputElement>) => {
+    const inpt = e.target.value;
 
-    if (name.length >= 1) {
-      getDealsByName(page, name);
-      setName("");
-    } else getDeals(page);
+    // deixando mais performatico
+    clearTimeout(debounceTm);
+
+    debounceTm = setTimeout(() => {
+      if (inpt.length === 0) {
+        getDeals(page);
+      } else getDealsByName(page, inpt);
+    }, 300);
   };
 
-  const handleCloseModal = () => setFormCreateModal(false);
-
-  // Others
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const handleCloseModal = () => {
+    setFormCreateModal(false);
+    setDeleteModal(false);
+    setFormUpdateModal(false);
+  };
 
   return (
-    <div>
+    <div className={styles.container}>
+      <div className={styles.sidebar}>
+        <a href="/deals">
+          <FaShoppingBag />
+          <span>Loja de Deals</span>
+        </a>
+      </div>
+
       <div className={styles.box}>
-        <div className={styles.presentation}>
-          <a href="/">
-            <Logo />
-          </a>
+        <div className={styles.header}>
+          <h2>DEALS</h2>
+          <button onClick={() => setFormCreateModal(true)}>CRIAR DEAL</button>
         </div>
 
-        <div className={styles.dealsTableContainer}>
-          {loading ? (
-            <div>Carregando</div>
-          ) : (
-            <>
-              <div className={styles.fullForm}>
-                <form className={styles.form}>
-                  <input
-                    type="text"
-                    placeholder="Pesquisar por nome..."
-                    onInput={(e: ChangeEvent<HTMLInputElement>) =>
-                      setName(e.target.value)
-                    }
-                  />
-                  <button onClick={handleSearchByName}>Pesquisar</button>
-                </form>
+        <hr />
 
-                <hr className={styles.bar} />
+        <input
+          onInput={handleSearchByName}
+          className={styles.inpt}
+          placeholder="Pesquisar por nome"
+          type="text"
+        />
 
-                <button
-                  className={styles.addBtn}
-                  onClick={() => setFormCreateModal(true)}
-                >
-                  Adicionar Deal
-                </button>
-              </div>
+        {loading ? (
+          <div className={styles.loadingContainer}>
+            <Loading />
+          </div>
+        ) : (
+          <>
+            <div className={styles.deals}>
+              {deals.map((deal: Deal) => (
+                <div className={styles.deal} key={deal.id}>
+                  <div className={styles.dealHeader}>
+                    <div className={styles.dealName}>
+                      <div className={styles.smallIcon}></div>
+                      <span>{deal.name}</span>
+                    </div>
 
-              <table className={styles.dealsTable}>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Status</th>
-                    <th>Casa de Bet</th>
-                    <th>Afiliado</th>
-                    <th>Moeda</th>
-                    <th>Ciclo de Pagamento</th>
-                    <th>Data de Criação</th>
-                    <th>Última Edição</th>
+                    <div className={styles.dealButtons}>
+                      <button
+                        onClick={() => {
+                          setSelectedDealId(deal.id);
+                          setFormUpdateModal(true);
+                        }}
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        onClick={() => {
+                          setSelectedDealId(deal.id);
+                          setDeleteModal(true);
+                        }}
+                      >
+                        <FaTrash />
+                      </button>
+                    </div>
+                  </div>
 
-                    <th>Ações</th>
-                  </tr>
-                </thead>
+                  <div className={styles.dealInfo}>
+                    <p>{deal.description}</p>
 
-                <tbody>
-                  {deals.map((deal: Deal) => (
-                    <tr key={deal.id}>
-                      <td>{deal.id}</td>
-                      <td>{deal.name}</td>
-                      <td>{deal.type.toUpperCase()}</td>
-                      <td>{title(deal.status)}</td>
-                      <td>{deal.bettingHouse}</td>
-                      <td>{deal.affiliate}</td>
-                      <td>{deal.currency.toUpperCase()}</td>
-                      <td>{title(deal.paymentCycle)}</td>
-                      <td>{parseData(deal.createdAt)}</td>
-                      <td>{parseData(deal.updated!)}</td>
+                    <div className={styles.dealStatus}>
+                      <div>
+                        <strong>Nota: </strong>
+                        <span>{deal.score}</span>
+                      </div>
 
-                      <td id={styles.buttons}>
-                        <button id={styles.see}>
-                          <FaEye />
-                        </button>
-                        <button id={styles.edit}>
-                          <FaEdit />
-                        </button>
-                        <button id={styles.delete}>
-                          <FaTrash />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                      <div>
+                        <strong>Esgotado: </strong>
+                        <span>{deal.isExhausted ? "✅" : "❌"}</span>
+                      </div>
 
-              <div>
-                <Pagination
-                  onClickFunction={(n) => setPage(n)}
-                  totalPages={totalPages}
-                  currentPage={page}
-                />
-              </div>
-            </>
-          )}
-        </div>
+                      <div>
+                        <strong>Data de Criação: </strong>
+                        <span>{parseData(deal.createdAt)}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <Pagination
+              totalPages={totalPages}
+              currentPage={page}
+              onClickFunction={(e) => setPage(e)}
+            />
+          </>
+        )}
       </div>
 
       {formCreateModal && (
         <FormCreateModal onCloseFunction={handleCloseModal} />
+      )}
+
+      {deleteModal && (
+        <DeleteModal onCloseFunction={handleCloseModal} id={selectedDealId} />
+      )}
+
+      {formUpdateModal && (
+        <FormUpdateModal
+          onCloseFunction={handleCloseModal}
+          id={selectedDealId}
+        />
       )}
     </div>
   );

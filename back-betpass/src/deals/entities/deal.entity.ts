@@ -3,7 +3,6 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -17,33 +16,12 @@ export class Deal {
   @Column()
   description: string;
 
-  @Column()
-  bettingHouse: string;
+  @Column({ type: 'integer' })
+  score: number;
 
-  @Column()
-  affiliate: string;
-
-  @Column({ type: 'double' })
-  revenueSharePercentage: number;
-
-  @Column({ type: 'double' })
-  value: number;
-
-  @Column()
-  type: string;
-
-  @Column()
-  status: string;
-
-  @Column()
-  currency: string;
-
-  @Column()
-  paymentCycle: string;
+  @Column({ type: 'boolean' })
+  isExhausted: boolean;
 
   @CreateDateColumn()
   createdAt: Date;
-
-  @UpdateDateColumn()
-  updated?: Date;
 }

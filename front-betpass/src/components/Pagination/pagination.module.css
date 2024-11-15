@@ -1,11 +1,11 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   gap: 12px;
 
-  margin-top: 18px;
+  margin-top: 30px;
 }
 
 .pages {
@@ -26,8 +26,8 @@
     font-weight: bold;
 
     background-color: transparent;
-    border: 2px solid var(--main-red);
-    color: var(--main-red);
+    border: 2px solid var(--neon-green);
+    color: var(--white-text);
 
     &:not(:disabled) {
       border: 2px solid rgba(0, 0, 0, 0.3);
@@ -38,9 +38,14 @@
 
 .arrow {
   cursor: pointer;
+  color: var(--neon-green);
 
   border: none;
   background: transparent;
 
   font-size: 16px;
+
+  &:disabled {
+    color: var(--darker-blue);
+  }
 }

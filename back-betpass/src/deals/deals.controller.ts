@@ -106,8 +106,6 @@ export class DealsController {
   @Delete(':id')
   async remove(@Param('id') id: string) {
     try {
-      console.log('Oie');
-
       await this.dealsService.remove(Number(id));
       return {
         success: true,

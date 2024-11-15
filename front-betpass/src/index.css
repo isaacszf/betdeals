@@ -1,49 +1,47 @@
 :root {
-  --main-dark: #212121;
-  --secondary-dark: #191919;
-  --main-white: #fff;
-  --main-red: #fa6a6a;
+  --main-blue: #222b33;
+  --darker-blue: #151c25;
+  --deal-blue: #1a212a;
 
-  --sidebar-text: #c5c5c5;
+  --input-blue: #373c45;
+  --neon-green: #c8e64f;
+  --text-green: #314411;
 
-  --text-darker: #292929;
-  --text-gray: #363636;
+  --white-text: #c5c5c5;
+  --really-white-text: #dddddd;
+  --gray: #d9d9d9;
+  --dark-gray: #696969;
+  --red: #cd3547;
 
-  --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  --toastify-color-dark: #222b33 !important;
+  --toastify-color-progress-dark: #c8e64f !important;
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("/src/assets/fonts/Poppins/Poppins-Regular.ttf");
+  font-family: "Roboto";
+  src: url("/src/assets/fonts/Roboto/Roboto-Regular.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("/src/assets/fonts/Poppins/Poppins-Bold.ttf");
+  font-family: "Roboto";
+  src: url("/src/assets/fonts/Roboto/Roboto-Bold.ttf");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("/src/assets/fonts/Poppins/Poppins-Light.ttf");
+  font-family: "Roboto";
+  src: url("/src/assets/fonts/Roboto/Roboto-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/src/assets/fonts/Roboto/Roboto-Light.ttf");
   font-weight: lighter;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Odenburg";
-  src: url("/src/assets/fonts/Odenburg/Orenburg.ttf");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Odenburg";
-  src: url("/src/assets/fonts/Odenburg/Orenburg-Bold.ttf");
-  font-weight: bold;
   font-style: normal;
 }
 
@@ -51,4 +49,9 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
 }
