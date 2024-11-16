@@ -26,14 +26,15 @@ com foco em organização, eficiência e boas práticas de programação.
 ### Front-end
 - Requisitos Obrigatórios
 
-  - [x] Interface de acordo com o Figma
   - [x] Interface que permita a visualização e criação de deals
   - [x] Pesquisa de deals pelo nome
   - [x] Interação, UX e Feedback ao usuário
     
 - Requisitos Opcionais
 
+  - [x] Interface de acordo com o Figma
   - [x] Interface que permita a edição e remoção de deals
+  - [x] Tratamento de erros
   - [x] Páginação de deals
   - [x] Responsividade
 
@@ -46,6 +47,7 @@ com foco em organização, eficiência e boas práticas de programação.
     - [x] Visualização individual
     - [x] Edição
     - [x] Remoção
+  - [x] Tratamento de erros
   - [x] Páginação de deals
   - [x] Testes para as operações do CRUD
 
