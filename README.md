@@ -12,6 +12,12 @@ com foco em organização, eficiência e boas práticas de programação.
 *TO-DO colocar anexo*
 
 ---
+## Deploy 🖥️
+
+**Front-end:** https://betdeals.vercel.app/
+**Back-end:** https://betdeals-backend.onrender.com/
+
+---
 ## Tecnologias Utilizadas ⚒️
 
 ### Front-end
