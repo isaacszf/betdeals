@@ -35,7 +35,7 @@ com foco em organização, eficiência e boas práticas de programação.
   - [x] Interface de acordo com o Figma
   - [x] Interface que permita a edição e remoção de deals
   - [x] Tratamento de erros
-  - [x] Páginação de deals
+  - [x] Paginação de deals
   - [x] Responsividade
 
 ### Back-end
@@ -48,7 +48,7 @@ com foco em organização, eficiência e boas práticas de programação.
     - [x] Edição
     - [x] Remoção
   - [x] Tratamento de erros
-  - [x] Páginação de deals
+  - [x] Paginação de deals
   - [x] Testes para as operações do CRUD
 
 ---
