@@ -99,6 +99,145 @@ Se necessário, utilize o comando abaixo no projeto de back-end (betpass-backend
 npm run migration:run
 ```
 
+---
+
+## Rotas do Back-end
+
+Aqui estão as rotas disponíveis no back-end para o gerenciamento de deals, com detalhes sobre seus parâmetros, respostas e funcionalidades:
+
+### Listar deals paginadas
+**Rota:** `GET /deals?page={page}&size={size}`  
+**Descrição:** Retorna uma lista de deals com paginação.  
+
+**Parâmetros de consulta (query):**  
+- `page`: Número da página (padrão: 1).  
+- `size`: Quantidade de itens por página (padrão: 12).  
+
+**Exemplo de Resposta:**  
+```json
+{
+  "success": true,
+  "data": {
+    "items": [...],
+    "totalItems": 100,
+    "page": 1,
+    "pageSize": 20
+  }
+}
+```
+
+&nbsp;
+
+### Listar deals paginadas pelo nome
+**Rota:** `GET /deals/names/{nome}?page={page}&size={size}`  
+**Descrição:** Retorna uma lista de deals com paginação.  
+
+**Parâmetros de consulta (query):**
+- `nome`: Nome ou parte do nome para filtrar os resultados.
+- `page`: Número da página (padrão: 1).  
+- `size`: Quantidade de itens por página (padrão: 12).  
+
+**Exemplo de Resposta:**  
+```json
+{
+  "success": true,
+  "data": {
+    "items": [...],
+    "totalItems": 100,
+    "page": 1,
+    "pageSize": 20
+  }
+}
+```
+
+&nbsp;
+
+### Listar informações de um deal
+**Rota:** `GET /deals/{id}`  
+**Descrição:** Retorna as informações de um deal pelo ID.  
+
+**Parâmetros de consulta (query):**
+- `id`: ID do deal a ser visualizado.  
+
+**Exemplo de Resposta:**  
+```json
+{
+  "success": true,
+  "data": {
+    ...
+  }
+}
+```
+
+&nbsp;
+
+### Editar informações de um deal
+**Rota:** `PATCH /deals/{id}`  
+**Descrição:** Edita as informações de um deal pelo ID.  
+
+**Parâmetros de consulta (query):**
+- `id`: ID do deal a ser editado.  
+
+**Exemplo de body da requisição:**
+> Os campos são opcionais, é possível enviar a requisição apenas com um, dois ou todos os fields
+```json
+{
+  "name": "Casa Legal",
+  "description": "Descrição da Casa Legal",
+  "score": 5,
+  "isExhausted": true
+}
+```
+
+**Exemplo de Resposta:**  
+```json
+{
+  "success": true,
+  "message": "Deal updated successfully"
+}
+```
+
+&nbsp;
+
+### Cadastrar  um deal
+**Rota:** `POST /deals`  
+**Descrição:** Cadastra um novo deal.  
+
+**Exemplo de body da requisição:**
+```json
+{
+  "name": "Casa Legal",
+  "description": "Descrição da Casa Legal",
+  "score": 5,
+  "isExhausted": true
+}
+```
+
+**Exemplo de Resposta:**  
+```json
+{
+  "success": true,
+  "message": "Deal created successfully"
+}
+```
+
+&nbsp;
+
+### Excluir um deal
+**Rota:** `DELETE /deals/{id}`  
+**Descrição:** Exclui um deal pelo ID.  
+
+**Parâmetros de consulta (query):**
+- `id`: ID do deal a ser excluido.  
+
+**Exemplo de Resposta:**  
+```json
+{
+  "success": true,
+  "message": "Deal deleted successfully"
+}
+```
+
 <!-- Badges -->
 [badge-react]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [badge-vite]: https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E
