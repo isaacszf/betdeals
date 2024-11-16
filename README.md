@@ -8,7 +8,7 @@ A aplicação implementa funcionalidades básicas e essenciais, simulando cenár
 com foco em organização, eficiência e boas práticas de programação.
 
 **Vídeo apresentando as funcionalidades:**
-<br>
+<br> &nbsp;
 [![Watch the video](https://img.youtube.com/vi/rKZ58SqfvDY/maxresdefault.jpg)](https://www.youtube.com/watch?v=rKZ58SqfvDY)
 *Clique na imagem pra abrir o vídeo!*
 
