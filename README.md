@@ -66,7 +66,7 @@ cd betdeals
 ### 2. Configure e inicie o back-end
 O back-end precisa estar em execução para que o front-end funcione corretamente. Para iniciar o back-end, siga as etapas abaixo:
 ```bash
-cd betpass-backend
+cd back-betpass
 npm install
 npm run start:dev
 ```
@@ -75,7 +75,7 @@ npm run start:dev
 ### 3. Configure e inicie o front-end
 Abra um novo terminal, navegue até a pasta do front-end e inicie o projeto:
 ```bash
-cd betpass-frontend
+cd front-betpass
 npm install
 npm run dev
 ```
