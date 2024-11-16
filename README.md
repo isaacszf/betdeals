@@ -17,7 +17,7 @@ com foco em organização, eficiência e boas práticas de programação.
 
 **Front-end:** https://betdeals.vercel.app/
 <br>
-**Back-end:** https://betdeals-backend.onrender.com/ (por conta do render, os web services param de funcionar depois de um tempo, então é preciso esperar um tempo até que a API esteja funcional)
+**Back-end:** https://betdeals-backend.onrender.com/ (por conta do render, os web services param de funcionar depois de alguns minutos, então é preciso esperar um tempo até que a API esteja funcional)
 
 ---
 ## Tecnologias Utilizadas ⚒️
