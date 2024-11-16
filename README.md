@@ -15,6 +15,7 @@ com foco em organização, eficiência e boas práticas de programação.
 ## Deploy 🖥️
 
 **Front-end:** https://betdeals.vercel.app/
+<br>
 **Back-end:** https://betdeals-backend.onrender.com/
 
 ---
