@@ -19,6 +19,8 @@ com foco em organização, eficiência e boas práticas de programação.
 <br>
 **Back-end:** https://betdeals-backend.onrender.com/ (por conta do render, os web services param de funcionar depois de alguns minutos AFK, então é preciso esperar um tempo até que a API esteja funcional)
 
+Após abrir o front, espere uns 3 minutos até que a API hosteada no render ligue.
+
 ---
 ## Tecnologias Utilizadas ⚒️
 
